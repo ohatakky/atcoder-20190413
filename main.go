@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func scanNums(len int) (nums []int) {
 	var num int
@@ -12,19 +14,24 @@ func scanNums(len int) (nums []int) {
 }
 
 func main() {
-	var n int
-	fmt.Scan(&n)
+	var s string
+	fmt.Scan(&s)
 
-	h := scanNums(n)
-
-	max := 0
-	c_sea := 0
-	for _, v := range h {
-		if v >= max {
-			max = v
-			c_sea++
+	rune_s := []rune(s)
+	c := 0
+	for i, v := range rune_s {
+		if i == 0 {
+			continue
+		}
+		if int32(rune_s[i-1]) == v {
+			if v == 48 {
+				rune_s[i] = 49
+			} else {
+				rune_s[i] = 48
+			}
+			c++
 		}
 	}
-	fmt.Println(c_sea)
 
+	fmt.Println(c)
 }
