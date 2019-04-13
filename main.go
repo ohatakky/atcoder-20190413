@@ -2,19 +2,29 @@ package main
 
 import "fmt"
 
-func main() {
-	var a, b int
-	fmt.Scan(&a, &b)
+func scanNums(len int) (nums []int) {
+	var num int
+	for i := 0; i < len; i++ {
+		fmt.Scan(&num)
+		nums = append(nums, num)
+	}
+	return
+}
 
-	sum := 0
-	for i := 0; i < 2; i++ {
-		if a <= b {
-			sum += b
-			b -= 1
-		} else {
-			sum += a
-			a -= 1
+func main() {
+	var n int
+	fmt.Scan(&n)
+
+	h := scanNums(n)
+
+	max := 0
+	c_sea := 0
+	for _, v := range h {
+		if v >= max {
+			max = v
+			c_sea++
 		}
 	}
-	fmt.Println(sum)
+	fmt.Println(c_sea)
+
 }
